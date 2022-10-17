@@ -1,0 +1,58 @@
+.corner {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    /*top: 0 !important;
+    right: 0 !important;*/
+}
+
+.grid-container {
+    display: grid;
+    justify-content: space-between;
+    text-align: center;
+}
+
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
+/*img {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+}*/
+.caption {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+.test {
+    width: 0;
+    height: 100px;
+}
+.images {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 10px;
+}
+
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.txt {
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    width: 600px;
+
+}
+
+.width {
+    max-width: 60%;
+}
+
