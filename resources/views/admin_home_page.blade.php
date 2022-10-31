@@ -34,15 +34,19 @@
         </div>
 </nav>
 
-        <div class="row bd-highlight">
-            @foreach($products as $product)
-                <div class="p-2 col-sm-3 bd-highlight">
-                    <img src="{{ asset("images/" . $product->image) }}" height="300" width="400" alt="Image is not available">
-                    <div class="text-center"><a href="/product/{{$product->id}}/show" class="caption"> {{ $product->name }} {{ $product->model }}</a></div>
-                    <a href="/product/{{$product->id}}/delete" class="text-sm text-gray-500 underline">Delete</a>
-                    <a href="/product/{{$product->id}}/edit" class="text-sm text-gray-500 underline">Edit</a>
-                </div>
-            @endforeach
-        </div>
+<div class="container-fluid">
+    <div class="row bd-highlight">
+        @foreach($products as $product)
+            <div class="p-2 col-sm-3 bd-highlight">
+                <img src="{{ asset("images/" . $product->image) }}" height="300" width="400" alt="Image is not available">
+                <p class="text-lg-center"><a href="/product/{{$product->id}}/show" class="caption"> {{ $product->name }} {{ $product->model }}</a></p>
+                <a href="/product/{{$product->id}}/edit" class="text-sm text-gray-500 underline">Edit</a>
+                <a href="/product/{{$product->id}}/delete" class="text-sm text-gray-500 underline">Delete</a>
+            </div>
+        @endforeach
+    </div></div>
 
 </body>
+
+
+

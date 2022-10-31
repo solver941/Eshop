@@ -54,6 +54,7 @@ class HomeController extends Controller
     {
         Auth::logout();
         $products = Product::all();
+        /*dd($products);*/
         return view("home_page", compact("products"));
     }
 }

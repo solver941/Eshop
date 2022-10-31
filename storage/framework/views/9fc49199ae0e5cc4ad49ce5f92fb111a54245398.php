@@ -34,16 +34,20 @@
         </div>
 </nav>
 
-        <div class="row bd-highlight">
-            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="p-2 col-sm-3 bd-highlight">
-                    <img src="<?php echo e(asset("images/" . $product->image)); ?>" height="300" width="400" alt="Image is not available">
-                    <div class="text-center"><a href="/product/<?php echo e($product->id); ?>/show" class="caption"> <?php echo e($product->name); ?> <?php echo e($product->model); ?></a></div>
-                    <a href="/product/<?php echo e($product->id); ?>/delete" class="text-sm text-gray-500 underline">Delete</a>
-                    <a href="/product/<?php echo e($product->id); ?>/edit" class="text-sm text-gray-500 underline">Edit</a>
-                </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
+<div class="container-fluid">
+    <div class="row bd-highlight">
+        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="p-2 col-sm-3 bd-highlight">
+                <img src="<?php echo e(asset("images/" . $product->image)); ?>" height="300" width="400" alt="Image is not available">
+                <p class="text-lg-center"><a href="/product/<?php echo e($product->id); ?>/show" class="caption"> <?php echo e($product->name); ?> <?php echo e($product->model); ?></a></p>
+                <a href="/product/<?php echo e($product->id); ?>/edit" class="text-sm text-gray-500 underline">Edit</a>
+                <a href="/product/<?php echo e($product->id); ?>/delete" class="text-sm text-gray-500 underline">Delete</a>
+            </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </div></div>
 
 </body>
+
+
+
 <?php /**PATH /root/PhpstormProjects/laravel-9-template/resources/views/admin_home_page.blade.php ENDPATH**/ ?>

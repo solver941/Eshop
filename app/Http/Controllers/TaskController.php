@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 
 class TaskController
@@ -12,6 +13,7 @@ class TaskController
         //Here we are creating a session for the shopping cart where we are doing two things:
         //Checking if product exist in the cart then removing it or if it doesn't exist, then add to the cart.
         $products=Session::get('cartProducts');
+
 
 
         //dd(!is_null($products) && in_array($id,$products));
@@ -30,13 +32,22 @@ class TaskController
     public function shopping_cart()
     {
         $products=Session::get('cartProducts');
+
         if (((isset($products))==true)&&($products !== [])){
             $values = value($products);
-            //$keys = array_keys($values);
-            $key = key($products);
+            $all_from_rows = [];
+            $a = 0;
+
+            foreach($values as $value){
+                $all_from_row = Product::where('id', $value)->get();
+                array_push($all_from_rows, $all_from_row);
+                $a++;
+            }
+
             $length = count($values);
             $empty = false;
-            return view("shopping-cart", compact("values", "length", "key", "empty"));
+            $total_price = 0;
+            return view("shopping-cart", compact("values", "length", "empty","total_price", "all_from_rows"));
         } else{
             $empty = true;
             return view("shopping-cart", compact("empty"));

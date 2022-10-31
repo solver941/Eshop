@@ -9,14 +9,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <nav class="navbar navbar-light bg-light">
     <a href="{{ route('check') }}"><h1>E-shop</h1></a>
-<!--    <a href="/shopping_cart"><img src="shopping_cart.webp" height=100 alt=""></a>-->
+
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-                <a href="/shopping_cart"><img src="shopping_cart.webp" height=100 class="btn btn-success pull-right" alt=""></a>
+
                 <a href="{{ url('/home') }}" class="text-sm text-gray-500 underline">Home</a>
             @else
-                <a href="/shopping_cart"><img src="shopping_cart.webp" height=100 class="corner" id="corner"></a>
+
                 <a href="{{ route('login') }}" class="text-sm text-gray-500 underline">Login</a>
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-500 underline">Register</a>

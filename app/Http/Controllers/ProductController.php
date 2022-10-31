@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -71,10 +72,12 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect("/");
+        return redirect("/back_home");
     }
     public function editProduct($id)
     {
+
+
         $product = Product::find($id);
         $name = $product->name;
         $model = $product->model;
@@ -82,22 +85,28 @@ class ProductController extends Controller
         $image = $product->image;
         $description = $product->description;
 
+
         return view("edit", compact("id", "name", "model", "cena", "image", "description"));
     }
     public function updateProduct(Request $request, $id)
     {
         /*$product = Product::find($id);
-        $product->name = $request->input("name");
-        $product->model = $request->input("model");
-        $product->price = $request->input("price");
-        $product->image = $request->input("image");
-        $product->description = $request->input("description");
+        $name = $request->input("name");
+        $model = $request->input("model");
+        $price = $request->input("price");
+        $image = $request->input("image");
+        $description = $request->input("description");*/
+        /*$product->update();*/
+        /*$newImageName = time() . "-" . $request->name . "." .
+            $request->image->extension();
+        $request->image->move(public_path("images"), $newImageName);*/
 
-        $product->update();*/
         Product::where("id", $id)->update($request->except([
-            "_token", "_method"
+            "_token", "_method", "image_path", "image"
         ]));
-        return redirect("/");
+        $all_from_row = Product::where('id', $id)->get();
+        /*dd($all_from_row);*/
+        return redirect("/back_home");
     }
 }
 

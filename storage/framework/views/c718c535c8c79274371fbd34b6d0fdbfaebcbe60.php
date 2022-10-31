@@ -20,16 +20,9 @@ use App\Models\Product
 <body>
 
 <?php
-    if($empty==false){
-        $i = 1;
-        $total_price = 0;
-        while ($i <= $length ) {
-            $all_from_row = Product::where('id', $values[$key+($i-1)])->get();
-            $i++;
-            $total_price += $all_from_row[0]["price"];
-
-            ?>
-<section class="h-100 h-custom" style="background-color: #eee;">
+if($empty==false){
+    ?>
+    <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
@@ -49,10 +42,16 @@ use App\Models\Product
                                         <p class="mb-0">You have <?php echo e($length); ?> items in your cart</p>
                                     </div>
                                     <div>
-                                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                                                                                                    class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
+<!--                                     <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>-->
                                     </div>
                                 </div>
+                                    <?php
+    foreach($all_from_rows as $all_from_row) {
+    $total_price += $all_from_row[0]["price"];
+    ?>
+
+
+
 
                                 <div class="card mb-3">
                                     <div class="card-body">
@@ -86,8 +85,7 @@ use App\Models\Product
 
                                     <?php
                                 }
-
-                                ?>
+                                    ?>
                             </div>
                             <div class="col-lg-5">
 
@@ -95,8 +93,8 @@ use App\Models\Product
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-4">
                                             <h5 class="mb-0">Card details</h5>
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                                                 class="img-fluid rounded-3" style="width: 45px" alt="Avatar">
+<!--                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                                                 class="img-fluid rounded-3" style="width: 45px" alt="Avatar">-->
                                         </div>
 
                                         <p class="small mb-2">Card type</p>
@@ -177,28 +175,15 @@ use App\Models\Product
         </div>
     </div>
 </section>
-        <?php
+    <?php
 
-    } else{
+} else{
     ?>
-        <h1>Shopping Cart is empty</h1>
+<h1>Shopping Cart is empty</h1>
     <?php
 }
 ?>
 </body>
 
 
-
-
-
-
-<!--$all_from_row = Product::where('id', $values[$key+($i-1)])->get();
-?>-->
-
-
-
-
-<!--<br>-->
-
-<!--$i++;-->
 <?php /**PATH /root/PhpstormProjects/laravel-9-template/resources/views/shopping-cart.blade.php ENDPATH**/ ?>
