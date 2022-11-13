@@ -55,8 +55,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 
-Route::get('/profile', function () {
-})->middleware(['auth', 'verified']);
+
 
 Route::middleware(["auth"])->group(function () {
     Route::resource("/admin", \App\Http\Controllers\AdminController::class);
