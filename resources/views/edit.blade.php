@@ -25,21 +25,21 @@
     <div class="container-sm">
         <div class="form-group">
             <label for="exampleFormControlInput1">Jméno</label>
-            <input name="name" type="text" class="form-control" placeholder="" value={{$name}} required>
+            <input name="name" type="text" class="form-control" placeholder="" value={{$product->name}} required>
         </div>
-
+y
         <br>
 
         <div class="form-group">
             <label for="exampleFormControlInput1">Model</label>
-            <input name="model" type="text" class="form-control" placeholder="" value={{$model}} required>
+            <input name="model" type="text" class="form-control" placeholder="" value={{$product->model}} required>
         </div>
 
         <br>
 
         <div class="form-group">
             <label for="exampleFormControlInput1">Cena</label>
-            <input name="price" type="number" class="form-control-file" placeholder="" value={{$cena}} required>
+            <input name="price" type="number" class="form-control-file" placeholder="" value={{$product->price}} required>
         </div>
 
         <br><br>
@@ -47,7 +47,7 @@
         <form>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Example file input</label>
-                <input name="image" type="file" class="form-control-file" id="exampleFormControlFile1" value={{$image}} required>
+                <input name="image" type="file" class="form-control-file" id="exampleFormControlFile1" value={{$product->image}} required>
             </div>
         </form>
         <div class="form-group">
@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Popis produktu</label>
-                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="10" required>{{$description}}</textarea>
+                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="10" required>{{$product->description}}</textarea>
             </div>
         </div>
         <div class="text-lg-right">

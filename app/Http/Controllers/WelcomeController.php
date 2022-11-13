@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     public function check_admin()
     {
 
-        $products = Product::all();
+        $products = Product::all()->sortByDesc("visits_count");
         if (Auth::user()) {
             $id = Auth::user()->id;
             $admin = Role::find($id);

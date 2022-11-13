@@ -16,7 +16,7 @@
 <link href="css/positions.css" rel="stylesheet">
 
 
-<form action="/product/store" method="POST" enctype="multipart/form-data">
+<form action="{{ route('product_store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 <div class="container-sm">
     <div class="form-group">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -14,32 +15,29 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::group(['middleware' => ['auth']], function () {
-    Route::get("/", [\App\Http\Controllers\WelcomeController::class, "home"]);
-});*/
 
-/*Auth::routes(["verify" => true]);*/
 Route::get("/", [\App\Http\Controllers\WelcomeController::class, "home"]);
 Route::get("/back_home", [\App\Http\Controllers\WelcomeController::class, "check_admin"])->name("check");
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware(['auth', 'verified']);*/
-/*Route::get('/home', function () {
-    return view('auth/verify');
-})->middleware(['verified']);;
-
-Route::get('/home', function () {
-    return view('auth/verify');
-});*/
 Route::get("/home_page", [\App\Http\Controllers\HomeController::class, "logout"])->name("logout");
+
 Route::get("/home", [\App\Http\Controllers\HomeController::class, "index"]);
-/*Route::get('/admin', function () {
-    return view('admin');
-});*/
-Route::post("/product/store", [\App\Http\Controllers\ProductController::class, "storeProduct"]);
-Route::get("/product/{id}/delete", [\App\Http\Controllers\ProductController::class, "deleteProduct"]);
-Route::get("/product/{id}/edit", [\App\Http\Controllers\ProductController::class, "editProduct"]);
-Route::patch("/product/{id}/update", [\App\Http\Controllers\ProductController::class, "updateProduct"]);
-Route::get("/add_cart/{id}", [\App\Http\Controllers\TaskController::class, "add_cart"])->name("add_cart");
-Route::get("/shopping_cart", [\App\Http\Controllers\TaskController::class, "shopping_cart"]);
+Route::get("/payment", [\App\Http\Controllers\TaskController::class, "payment"])->name("payment");
+
+Route::middleware(["auth"])->group(function () {
+    Route::resource("/admin", \App\Http\Controllers\AdminController::class);
+});
+
+Route::group(['prefix' => 'product'], function () {
+    Route::get("/{id}/show", [\App\Http\Controllers\ProductController::class, "showProduct"]);
+});
+
+Route::prefix('admin')->middleware('isAdmin')->group(function() {
+    Route::get("/{id}/delete", [\App\Http\Controllers\ProductController::class, "deleteProduct"])->name("product_delete");
+    Route::get("/{id}/edit", [\App\Http\Controllers\ProductController::class, "editProduct"])->name("product_edit{id}");
+    Route::patch("/{id}/update", [\App\Http\Controllers\ProductController::class, "updateProduct"])->name("product_update");
+    Route::post("/store", [\App\Http\Controllers\ProductController::class, "storeProduct"])->name("product_store");
+
+});
 
 
 Route::get('/email/verify', function () {
@@ -64,27 +62,10 @@ Route::middleware(["auth"])->group(function () {
     Route::resource("/admin", \App\Http\Controllers\AdminController::class);
 });
 Auth::routes();
-Route::get("/product/{id}/show", [\App\Http\Controllers\ProductController::class, "showProduct"]);
-/*Route::get('/', function () {
-    return view('welcome');
-});
-Auth::routes(["verify" => true]);/*
-*/
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
 
 
-/*Route::get("/", [App\Http\Controllers\HomeController::class, 'admin']);*/
-//Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'admin'])->name("home");*/
-/*Route::prefix("admin")->middleware("auth", "isAdmin")->group(function() {
-        Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'admin'])->name("admin");
-});*/
 
 
-/*Route::get("/register", function() {
-    return view("register");
-})->middleware(["auth", "verified"])->name("register");*/
 
 
 

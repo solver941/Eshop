@@ -19,9 +19,9 @@ use App\Models\Product
 
 <body>
 
-<?php
-if($empty==false){
-    ?>
+
+@if ($empty==false)
+
     <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -45,10 +45,10 @@ if($empty==false){
 <!--                                     <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>-->
                                     </div>
                                 </div>
-                                    <?php
-    foreach($all_from_rows as $all_from_row) {
-    $total_price += $all_from_row[0]["price"];
-    ?>
+
+    @foreach($all_from_rows as $all_from_row)
+    @php $total_price += $all_from_row[0]["price"];
+    @endphp
 
        <div class="card mb-3">
            <div class="card-body">
@@ -78,9 +78,7 @@ if($empty==false){
            </div>
        </div>
 
-    <?php
-    }
-    ?>
+    @endforeach
 
                             </div>
                             <div class="col-lg-5">
@@ -158,9 +156,9 @@ if($empty==false){
                                             <p class="mb-2">{{$total_price+250}} Kč</p>
                                         </div>
 
-                                        <button type="button" class="btn btn-info btn-block btn-lg">
+                                        <button type="button" class="btn btn-info btn-block btn-lg" onclick=window.location.href="/payment">
                                             <div class="d-flex justify-content-between">
-                                                <span>$4818.00</span>
+                                                <span>{{$total_price+250}} Kč</span>
                                                 <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                             </div>
                                         </button>
@@ -178,14 +176,13 @@ if($empty==false){
         </div>
     </div>
     </section>
-    <?php
 
-} else{
-    ?>
+
+@else
 <h1>Shopping Cart is empty</h1>
-    <?php
-}
-?>
+
+@endif
+
 </body>
 
 

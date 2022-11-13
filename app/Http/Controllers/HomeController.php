@@ -42,7 +42,8 @@ class HomeController extends Controller
                 return view('home');
             } else {
                 return view("auth/verify");
-        //$products = Product::all();
+
+                //$products = Product::all();
         //return view('home_page', compact("products"));
         }}}
 
@@ -54,7 +55,11 @@ class HomeController extends Controller
     {
         Auth::logout();
         $products = Product::all();
+
         /*dd($products);*/
-        return view("home_page", compact("products"));
+        /*return view("home_page", compact("products"));*/
+        //return redirect()->route('home_page', [$products]);
+
+        return redirect("/")->with("products", $products);
     }
 }

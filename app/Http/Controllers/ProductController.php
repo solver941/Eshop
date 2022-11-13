@@ -33,7 +33,7 @@ class ProductController extends Controller
         ]);
         $newImageName = time() . "-" . $request->name . "." .
             $request->image->extension();
-        $request->image->move(public_path("images"), $newImageName);
+        $request->image->move(storage_path("app/public/images"), $newImageName);
 
         $test = Product::create([
             "name" => $request->input('name'),
@@ -52,13 +52,10 @@ class ProductController extends Controller
     {
         $all_from_row = Product::where('id', $id)->get();
         $product = Product::find($id);
-        $visits = $product->visits_count;
-        $visits_count = $visits+1;
-        Product::where("id", $id)->update(['visits_count' => $visits_count]);
+        $product->visits_count++;
+        $product->save();
         session_start();
         $bool = isset($_SESSION["add"]);
-        $image = $all_from_row[0]["id"];
-        //Below code is modifying the text of the code. I didn't modified the logic you've gone with but only toggling between text based on if it exist in shopping cart session or not.
         $cartProducts=Session::get('cartProducts');
         if(!is_null($cartProducts) && in_array($product->id,$cartProducts)){
             $text="Remove from cart";
@@ -86,7 +83,7 @@ class ProductController extends Controller
         $description = $product->description;
 
 
-        return view("edit", compact("id", "name", "model", "cena", "image", "description"));
+        return view("edit", compact("id" ),["product"=>$product]);
     }
     public function updateProduct(Request $request, $id)
     {
