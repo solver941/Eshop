@@ -15,34 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class Complete3DSPaymentResponseModel extends BaseResponseModel implements iBarionModel
+class TransactionResponseModel implements iBarionModel
 {
-    public $PaymentId;
-    public $PaymentRequestId;
+    public $POSTransactionId;
+    public $TransactionId;
     public $Status;
-    public $IsSuccessful;
-    public $TraceId;
+    public $TransactionTime;
+    public $RelatedId;
 
     function __construct()
     {
-        parent::__construct();
-        $this->PaymentId = "";
-        $this->PaymentRequestId = "";
+        $this->POSTransactionId = "";
+        $this->TransactionId = "";
         $this->Status = "";
-        $this->IsSuccessful = false;
-        $this->TraceId = "";
+        $this->TransactionTime = "";
+        $this->RelatedId = "";
     }
 
     public function fromJson($json)
     {
         if (!empty($json)) {
-            parent::fromJson($json);
-
-            $this->PaymentId = jget($json, 'PaymentId');
-            $this->PaymentRequestId = jget($json, 'PaymentRequestId');
-            $this->Status = jget($json, 'PaymentStatus');
-            $this->IsSuccessful = jget($json, 'IsSuccessful');
-            $this->TraceId = jget($json, 'TraceId');
+            $this->POSTransactionId = $json['POSTransactionId'];
+            $this->Status = $json['Status'];
+            $this->TransactionId = $json['TransactionId'];
+            $this->TransactionTime = $json['TransactionTime'];
+            $this->RelatedId = $json['RelatedId'];
         }
     }
 }
