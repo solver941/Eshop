@@ -60,7 +60,7 @@ class TaskController
     }
     public function payment()
     {
-        require_once 'library/BarionClient.php';
+        require_once 'library/BarionClientController.php';
         $myPosKey = "9c165cfc-cbd1-452f-8307-21a3a9cee664";
 
         $item = new ItemModel();

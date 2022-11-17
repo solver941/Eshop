@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use 'helpers' . DIRECTORY_SEPARATOR . 'loader.php';
-class BarionClient extends Controller
-{
+include "Barion". DIRECTORY_SEPARATOR .'Helpers' . DIRECTORY_SEPARATOR . 'loader.php';
+class BarionClientController extends Controller
+
     private $Environment;
 
     private $Password;
