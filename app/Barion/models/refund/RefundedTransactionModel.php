@@ -15,33 +15,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class RefundResponseModel extends BaseResponseModel implements iBarionModel
-{
-    public $PaymentId;
-    public $RefundedTransactions;
+class RefundedTransactionModel implements iBarionModel {
+
+    public $TransactionId;
+    public $Total;
+    public $POSTransactionId;
+    public $Comment;
+    public $Status;
 
     function __construct()
     {
-        parent::__construct();
-        $this->PaymentId = "";
-        $this->RefundedTransactions = array();
+        $this->TransactionId = "";
+        $this->Total = 0;
+        $this->POSTransactionId = "";
+        $this->Comment = "";
+        $this->Status = "";
     }
+
 
     public function fromJson($json)
     {
         if (!empty($json)) {
-            parent::fromJson($json);
-
-            $this->PaymentId = jget($json, 'PaymentId');
-            $this->RefundedTransactions = array();
-
-            if (!empty($json['RefundedTransactions'])) {
-                foreach ($json['RefundedTransactions'] as $key => $value) {
-                    $tr = new RefundedTransactionModel();
-                    $tr->fromJson($value);
-                    array_push($this->RefundedTransactions, $tr);
-                }
-            }
+            $this->TransactionId = $json['TransactionId'];
+            $this->Total = $json['Total'];
+            $this->POSTransactionId = $json['POSTransactionId'];
+            $this->Comment = $json['Comment'];
+            $this->Status = $json['Status'];
         }
     }
 }
